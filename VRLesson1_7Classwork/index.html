@@ -1,14 +1,100 @@
 <html>
-  <head>
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-assets>
-        <img id="texture" src="pacman_maze.jpg" />
-      </a-assets>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" repeat="5 5" src="#texture"></a-plane>
-      <a-sky color="black"></a-sky>
-    </a-scene>
-  </body>
+	<head>
+		<script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+	</head>
+	<body>
+		<a-scene>
+			<a-assets>
+				<img id="texture" src="pacman_maze.jpg" />
+			</a-assets>
+			
+					<a-entity position="-5 0 -5" class="red">
+					
+						<!-- Ghost Body -->
+						<a-sphere position="0 2 -3" radius="1" color="red" phi-start="0" phi-length="180" side="double" rotation="-90 0 0" ></a-sphere>
+						<a-cylinder position="0 1.5 -3" radius="1" color="red"></a-cylinder>
+						<a-sphere scale="0.35 1 0.25" position="0.75 1.5 -3" rotation="0 90 0" color="red"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -2.5" rotation="0 45 0" color="red"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -2.25" color="red"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -2.5" rotation="0 -45 0" color="red"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.75 1.5 -3" rotation="0 -90 0" color="red"> </a-sphere>
+						
+						<!-- Ghost Legs -->
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -3.5" rotation="0 -45 0" color="red"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -3.75" color="red"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -3.5" rotation="0 45 0" color="red"> </a-sphere>
+
+						<!-- Ghost Eyes -->
+						<a-sphere position="0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="-0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="0.38 2 -2" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+						<a-sphere position="-0.23 2 -2" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+
+					</a-entity>
+
+					<a-entity position="0 0 -5" class="pink">
+					
+						<!-- Ghost Body -->
+						<a-sphere position="0 2 -3" radius="1" color="#FFB8FF" phi-start="0" phi-length="180" side="double" rotation="-90 0 0" ></a-sphere>
+						<a-cylinder position="0 1.5 -3" radius="1" color="#FFB8FF"></a-cylinder>
+						<a-sphere scale="0.35 1 0.25" position="0.75 1.5 -3" rotation="0 90 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -2.5" rotation="0 45 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -2.25" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -2.5" rotation="0 -45 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.75 1.5 -3" rotation="0 -90 0" color="#FFB8FF"> </a-sphere>
+						
+						<!-- Ghost Legs -->
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -3.5" rotation="0 -45 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -3.75" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -3.5" rotation="0 45 0" color="#FFB8FF"> </a-sphere>
+
+						<!-- Ghost Eyes -->
+						<a-sphere position="0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="-0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="0.3 2 -1.95" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+						<a-sphere position="-0.3 2 -1.95" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+
+					</a-entity>
+
+					<a-entity position="5 0 -5" class="aqua">
+					
+						<!-- Ghost Body -->
+						<a-sphere position="0 2 -3" radius="1" color="#00FFFF" phi-start="0" phi-length="180" side="double" rotation="-90 0 0" ></a-sphere>
+						<a-cylinder position="0 1.5 -3" radius="1" color="#00FFFF"></a-cylinder>
+						<a-sphere scale="0.35 1 0.25" position="0.75 1.5 -3" rotation="0 90 0" color="#00FFFF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -2.5" rotation="0 45 0" color="#00FFFF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -2.25" color="#00FFFF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -2.5" rotation="0 -45 0" color="#00FFFF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.75 1.5 -3" rotation="0 -90 0" color="#00FFFF"> </a-sphere>
+						
+						<!-- Ghost Legs -->
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -3.5" rotation="0 -45 0" color="#00FFFF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -3.75" color="#00FFFF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -3.5" rotation="0 45 0" color="#00FFFF"> </a-sphere>
+
+						<!-- Ghost Eyes -->
+						<a-sphere position="0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="-0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="0.25 2 -1.97" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+						<a-sphere position="-0.39 2 -2" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+
+					</a-entity>
+
+					<a-entity class="pacman" rotation="0 0 -45" position="-5 0 1">
+						<a-sphere rotation="0 0 90" position="0 2 -2" color="yellow" theta-start="0" theta-length="90" side="double"></a-sphere>
+						<a-sphere rotation="90 180 0" position="0 2 -2" color="yellow" phi-start="0" phi-length="90" side="double"></a-sphere>
+					</a-entity>
+
+					<a-entity class="pacman" rotation="0 180 -45" position="5 0 -2.5">
+						<a-sphere rotation="0 0 90" position="0 2 -2" color="yellow" theta-start="0" theta-length="90" side="double"></a-sphere>
+						<a-sphere rotation="90 180 0" position="0 2 -2" color="yellow" phi-start="0" phi-length="90" side="double"></a-sphere>
+					</a-entity>
+			
+				
+			
+			<a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" repeat="5 5" src="#texture"></a-plane>
+			<a-sky color="black"></a-sky>
+			
+		</a-scene>
+	</body>
 </html>
