@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script&gt;
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
+<script.js>
+window.addEventListener("DOMContentLoaded",function() {
+  //Challenge 1: Create a variable scene for the <a-scene> component in the HTML
+    var scene=document.querySelector("a-scene");
+
+  //Challenge 2: Create a variable for <a-dodecahedron>
+    var dodecahedron = document.createElement("a-dodecahedron");
+ 
+  //Challenge 3: Change the <a-dodecahedron>'s position, radius and color
+    doedecahedron.setAttribute("position", {x:-2 y:3 z:-10});
+    dodecahedron.setAttribute("radius", 2);
+    dodecahedron.setAttribute("color", "red");
+
+  //Challenge 4: Add the <a-dodecahedron> to the scene
+    scene.append(dodecahedron);
+
+  // Challenge Bonus
+  // 1) Use a for loop to create a lot of <a-dodecahedron>
+  // 2) Change each <a-dodecahedron>'s position to a random x, y, and z location
+  // 3) Change each <a-dodecahedron>'s to a random color.  Hint: Use rgb( ) and string interpolation
+
+    });
+</script.js>
