@@ -34,10 +34,75 @@ class UFO{
         this.bottom.setAttribute("color", "#708090");
         this.bottom.setAttribute("side", "double");
 
+        this.legs1 = document.createElement("a-entity");
+        
+        this.l1 = document.createElement("a-cylinder");
+        this.l1.setAttribute("radius", 0.15);
+        this.l1.setAttribute("color", "#B2BEB5");
+
+        this.s1 = document.createElement("a-sphere");
+        this.s1.setAttribute("radius", 0.15);
+        this.s1.setAttribute("phi-start", 0);
+        this.s1.setAttribute("phi-length", 180);
+        this.s1.setAttribute("rotation", {x:90, y:0, z:0});
+        this.s1.setAttribute("position", {x:0, y:-0.5, z:0});
+        this.s1.setAttribute("color", "#B2BEB5");
+
+        this.legs1.setAttribute("rotation", {x:20, y:180, z:0});
+        this.legs1.append(this.l1);
+        this.legs1.append(this.s1);
+        this.legs1.setAttribute("position", {x:0, y:-0.35, z:0.65});    
+        
+        //
+        
+        this.legs2 = document.createElement("a-entity");
+        
+        this.l2 = document.createElement("a-cylinder");
+        this.l2.setAttribute("radius", 0.15);
+        this.l2.setAttribute("color", "#B2BEB5");
+
+        this.s2 = document.createElement("a-sphere");
+        this.s2.setAttribute("radius", 0.15);
+        this.s2.setAttribute("phi-start", 0);
+        this.s2.setAttribute("phi-length", 180);
+        this.s2.setAttribute("rotation", {x:90, y:0, z:0});
+        this.s2.setAttribute("position", {x:0, y:-0.5, z:0});
+        this.s2.setAttribute("color", "#B2BEB5");
+
+        this.legs2.setAttribute("rotation", {x:25, y:65, z:0});
+        this.legs2.append(this.l2);
+        this.legs2.append(this.s2);
+        this.legs2.setAttribute("position", {x:-0.5, y:-0.35, z:-0.4}); 
+        
+        //
+
+        this.legs3 = document.createElement("a-entity");
+        
+        this.l3 = document.createElement("a-cylinder");
+        this.l3.setAttribute("radius", 0.15);
+        this.l3.setAttribute("color", "#B2BEB5");
+
+        this.s3 = document.createElement("a-sphere");
+        this.s3.setAttribute("radius", 0.15);
+        this.s3.setAttribute("phi-start", 0);
+        this.s3.setAttribute("phi-length", 180);
+        this.s3.setAttribute("rotation", {x:90, y:0, z:0});
+        this.s3.setAttribute("position", {x:0, y:-0.5, z:0});
+        this.s3.setAttribute("color", "#B2BEB5");
+
+        this.legs3.setAttribute("rotation", {x:25, y:-65, z:0});
+        this.legs3.append(this.l3);
+        this.legs3.append(this.s3);
+        this.legs3.setAttribute("position", {x:0.5, y:-0.35, z:-0.4}); 
+
 
         this.obj.append(this.body);
         this.obj.append(this.glass);
         this.obj.append(this.bottom);
+        this.obj.append(this.legs1);
+        this.obj.append(this.legs2);
+        this.obj.append(this.legs3);
+
         this.obj.setAttribute("position", {x:this.x, y:this.y, z:this.z});
 
         scene.append(this.obj);
@@ -47,9 +112,9 @@ class UFO{
         
         this.obj.setAttribute("position", {x:this.x, y:this.y, z:this.z});
 
-        if (this.y >= 0.5){
-            this.y-=this.dy/20;
-            console.log(this.dy, this.y);
+        if (this.y >= 1){
+            this.y-=this.dy/30;
+            
         }
     }
 

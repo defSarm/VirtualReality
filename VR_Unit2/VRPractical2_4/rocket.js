@@ -45,10 +45,57 @@ class Rocket{
     this.head.setAttribute("position", {x:0, y:1.5, z:0});
     this.head.setAttribute("color", "#800000");
 
+    // Legs
+    this.leg1 = document.createElement("a-entity");
+    this.s1 = document.createElement("a-box");
+    this.s1.setAttribute("position", {x:0, y:0.25, z:1});
+    this.s1.setAttribute("rotation", {x:-50, y:0, z:0});
+    this.s1.setAttribute("width", 0.2);
+    this.s1.setAttribute("depth", 0.2);
+    this.s1.setAttribute("height", 0.5);
+
+    this.s2 = document.createElement("a-box");
+    this.s2.setAttribute("position", {x:0, y:-0.2, z:1.15});
+    this.s2.setAttribute("width", 0.2);
+    this.s2.setAttribute("depth", 0.2);
+    this.s2.setAttribute("height", 0.7);
+
+    this.leg2 = document.createElement("a-entity");
+    this.s1 = document.createElement("a-box");
+    this.s1.setAttribute("position", {x:0, y:0.25, z:1});
+    this.s1.setAttribute("rotation", {x:-50, y:0, z:0});
+    this.s1.setAttribute("width", 0.2);
+    this.s1.setAttribute("depth", 0.2);
+    this.s1.setAttribute("height", 0.5);
+
+    this.s2 = document.createElement("a-box");
+    this.s2.setAttribute("position", {x:0, y:-0.2, z:1.15});
+    this.s2.setAttribute("width", 0.2);
+    this.s2.setAttribute("depth", 0.2);
+    this.s2.setAttribute("height", 0.7);
+    
+    this.leg3 = document.createElement("a-entity");
+    this.s5 = document.createElement("a-box");
+
+    this.s6 = document.createElement("a-box");
+
+
+    //appending legs
+    this.leg1.append(this.s1);
+    this.leg2.append(this.s3);
+    this.leg3.append(this.s5);
+
+    this.leg1.append(this.s2);
+    this.leg2.append(this.s4);
+    this.leg3.append(this.s6);
+
     //appending to the rocket
     this.body.append(this.base);
     this.body.append(this.window);
     this.body.append(this.glass);
+    this.body.append(this.leg1);
+    this.body.append(this.leg2);
+    this.body.append(this.leg3);
 
 
     this.obj.append(this.head);

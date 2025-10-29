@@ -5,7 +5,7 @@ let ufos = [];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene"); 
-
+  exRocket = new Rocket(0,1.5,0);
   // Challenge 3
   //1) Create 100 rockets in a grid pattern on the X-Z plane just 
   //   below the plane.  Provide each rocket an appropriate random 
@@ -29,10 +29,10 @@ window.addEventListener("DOMContentLoaded",function() {
 function loop(){
 
   for (let rocket of rockets){
-    rocket.launch();
+    //rocket.launch();
   }
   for (let ufo of ufos){
-    ufo.invade();
+    //ufo.invade();
   }
   
   window.requestAnimationFrame( loop );
