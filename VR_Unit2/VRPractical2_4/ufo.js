@@ -113,7 +113,7 @@ class UFO{
         this.obj.setAttribute("position", {x:this.x, y:this.y, z:this.z});
 
         if (this.y >= 1){
-            this.y-=this.dy/30;
+            this.y-=this.dy/40;
             
         }
     }

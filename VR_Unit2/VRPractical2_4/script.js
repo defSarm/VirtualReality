@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
   for (let i = 0;i<200;i++){
-    clouds.push(new Cloud(rnd(-30,30), rnd(8,15), rnd(-20,20)));
+    clouds.push(new Cloud(rnd(-30,30), rnd(8,15), rnd(-20,20), rnd(1,5)));
   }
 
   for (let i =0; i<50; i++){

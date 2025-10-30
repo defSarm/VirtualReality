@@ -10,7 +10,7 @@ class Rocket{
   constructor(x,y,z){
     this.x = x;
     this.y = y;
-    this.dy = 0.05;
+    this.dy = 0.01;
     this.z = z;
 
     // main rocket
@@ -122,6 +122,15 @@ class Rocket{
     this.leg3.setAttribute("position", {x:-0.15, y:-1, z:0.1});
     this.leg3.setAttribute("rotation", {x:-10, y:120, z:0});
     
+    //flame
+    this.flame = document.createElement("a-cone")
+    this.flame.setAttribute("rotation", {x:180, y:0, z:0});
+    this.flame.setAttribute("position", {x:0, y:-1.5, z:0})
+    this.flame.setAttribute("radius-bottom", 0.4);
+    this.flame.setAttribute("color","orange");
+
+    this.body.append(this.flame);
+
 
     this.obj.append(this.head);
     this.obj.append(this.body);
@@ -133,7 +142,15 @@ class Rocket{
 
   // make it fly
   launch(){
-    this.y += this.dy;
+    if (this.y < 3){
+      this.dy = 0.01
+    }
+    else if (this.y >3){
+      this.dy = 0.05;
+    } 
+    
+    this.y+=this.dy
+    
     this.obj.setAttribute("position",{x:this.x, y:this.y, z:this.z});
   }
 

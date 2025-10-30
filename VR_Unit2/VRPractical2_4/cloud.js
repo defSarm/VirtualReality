@@ -1,9 +1,9 @@
 class Cloud{
-    constructor(x,y,z){
+    constructor(x,y,z, dx){
         this.x = x;
         this.y = y;
         this.z = z;
-        this.dx = 0.1;
+        this.dx = dx;
 
         this.obj = document.createElement("a-entity");
 
@@ -28,7 +28,11 @@ class Cloud{
     }
     
     fly(){
-        this.x+=this.dx;
+        this.x+=this.dx/30;
         this.obj.setAttribute("position",{x:this.x, y:this.y, z:this.z});
+        if (this.x > 30){
+            this.x = -30;
+        }
+    
     }
 }
