@@ -29,13 +29,8 @@ window.addEventListener("DOMContentLoaded",function() {
       if(cols[c] == "x"){
         new Block(c,1,r)
       }
-      else if(cols[c] == "T"){
-        new Tree(c,1,r);
-      }else if(cols[c]=="o"){
-        new Rock(c,1,r)
-      }
     }
-
   }
+
 
 })

@@ -1,19 +1,79 @@
 <html>
-  <head>
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-assets>
-        <!-- Challenge
-             Upload a picture to use as the texture for the walls of your maze if you want
-        -->
-      </a-assets>
-      <a-plane position="0 0 0" rotation="-90 0 0" width="150" height="150" color="#AAFFAA"></a-plane>
-      
-      
-      <a-sky color="blue"></a-sky>
-      <a-camera position="0 1.3 0"> 
-      </a-camera>
+	<head>
+		<script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+		<script src="script.js"></script>
+		<script src="maze.js"></script>
+		<script src="ghost.js"></script>
+	</head>
+	<body>
+		<a-scene>
+			<a-assets>
+				<!-- Challenge
+						 Upload a picture to use as the texture for the walls of your maze if you want
+				-->
+				<img src="" id="">
+			</a-assets>
+
+			<a-box wireframe="true">
+				<a-entity position="0 0 3" class="red" id="red">
+						
+					<!-- Ghost Body -->
+					<a-sphere position="0 2 -3" radius="1" color="red" phi-start="0" phi-length="180" side="double" rotation="-90 0 0" ></a-sphere>
+					<a-cylinder position="0 1.5 -3" radius="1" color="red"></a-cylinder>
+					<a-sphere scale="0.35 1 0.25" position="0.75 1.5 -3" rotation="0 90 0" color="red"> </a-sphere>
+					<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -2.5" rotation="0 45 0" color="red"> </a-sphere>
+					<a-sphere scale="0.35 1 0.25" position="0 1.5 -2.25" color="red"> </a-sphere>
+					<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -2.5" rotation="0 -45 0" color="red"> </a-sphere>
+					<a-sphere scale="0.35 1 0.25" position="-0.75 1.5 -3" rotation="0 -90 0" color="red"> </a-sphere>
+					
+					<!-- Ghost Legs -->
+					<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -3.5" rotation="0 -45 0" color="red"> </a-sphere>
+					<a-sphere scale="0.35 1 0.25" position="0 1.5 -3.75" color="red"> </a-sphere>
+					<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -3.5" rotation="0 45 0" color="red"> </a-sphere>
+
+					<!-- Ghost Eyes -->
+					<a-sphere position="0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+					<a-sphere position="-0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+					<a-sphere position="0.38 2 -2" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+					<a-sphere position="-0.23 2 -2" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+
+				</a-entity>
+			</a-box>
+
+			<a-plane position="0 0 0" rotation="-90 0 0" width="150" height="150" color="#AAFFAA"></a-plane>
+			
+			
+			<a-sky color="white"></a-sky>
+			<a-camera position="5 10 36" id="camera"> 
+			</a-camera>
+        
+        </a-scene>
+
+        <script>
+            var yvalue = 15;
+            var camera = document.getElementById("camera");
+            
+
+            document.onkeydown = function (e) {
+                if(e.keyCode === 32){
+                    var xvalue = camera.getAttribute("position").x;
+                    var zvalue = camera.getAttribute("position").z;
+                    yvalue += 0.5;
+                    camera.setAttribute("position", {x:xvalue, y:yvalue, z:zvalue});
+                }
+                if(e.shiftKey){
+                    var xvalue = camera.getAttribute("position").x;
+                    var zvalue = camera.getAttribute("position").z;
+                    yvalue -= 0.5;
+                    camera.setAttribute("position", {x:xvalue, y:yvalue, z:zvalue});
+                }
+                if(e.keyCode === 69){
+                    yvalue=1.5;
+                    camera.setAttribute("position", {x:0, y:1.5, z:30});
+                    
+                }
+                
+            };
+        </script>
+    </body>
 </html>
