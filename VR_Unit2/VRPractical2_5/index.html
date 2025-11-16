@@ -6,16 +6,22 @@
 		<script src="ghost.js"></script>
 	</head>
 	<body>
+		
+		
 		<a-scene>
 			<a-assets>
 				<!-- Challenge
 						 Upload a picture to use as the texture for the walls of your maze if you want
 				-->
-				<img src="" id="">
+				<img src="grasswall.png" id="grass">
+				<img src="brickwall.jpg" id="brickwall">
 			</a-assets>
 
+			<a-box position="-45 3 -5" height="6" width="58" repeat="20 5 20" src="#grass"></a-box>
+			<a-box position="52 3 -5" height="6" width="47" repeat="20 5 20" src="#grass"></a-box>
+
 			<a-box wireframe="true">
-				<a-entity position="0 0 3" class="red" id="red">
+				<a-entity position="0 -100000 3" class="red" id="red">
 						
 					<!-- Ghost Body -->
 					<a-sphere position="0 2 -3" radius="1" color="red" phi-start="0" phi-length="180" side="double" rotation="-90 0 0" ></a-sphere>
@@ -40,11 +46,64 @@
 				</a-entity>
 			</a-box>
 
+			<a-entity position="5 -10000 -5" class="aqua" id="aqua">
+					
+				<!-- Ghost Body -->
+				<a-sphere position="0 2 -3" radius="1" color="#00FFFF" phi-start="0" phi-length="180" side="double" rotation="-90 0 0" ></a-sphere>
+				<a-cylinder position="0 1.5 -3" radius="1" color="#00FFFF"></a-cylinder>
+				<a-sphere scale="0.35 1 0.25" position="0.75 1.5 -3" rotation="0 90 0" color="#00FFFF"> </a-sphere>
+				<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -2.5" rotation="0 45 0" color="#00FFFF"> </a-sphere>
+				<a-sphere scale="0.35 1 0.25" position="0 1.5 -2.25" color="#00FFFF"> </a-sphere>
+				<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -2.5" rotation="0 -45 0" color="#00FFFF"> </a-sphere>
+				<a-sphere scale="0.35 1 0.25" position="-0.75 1.5 -3" rotation="0 -90 0" color="#00FFFF"> </a-sphere>
+				
+				<!-- Ghost Legs -->
+				<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -3.5" rotation="0 -45 0" color="#00FFFF"> </a-sphere>
+				<a-sphere scale="0.35 1 0.25" position="0 1.5 -3.75" color="#00FFFF"> </a-sphere>
+				<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -3.5" rotation="0 45 0" color="#00FFFF"> </a-sphere>
+				<!-- Ghost Eyes -->
+				<a-sphere position="0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+				<a-sphere position="-0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+				<a-sphere position="0.25 2 -1.97" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+				<a-sphere position="-0.39 2 -2" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+
+			</a-entity>
+
+			<a-entity position="0 -10000 -5" class="pink" id="pink">
+					
+						<!-- Ghost Body -->
+						<a-sphere position="0 2 -3" radius="1" color="#FFB8FF" phi-start="0" phi-length="180" side="double" rotation="-90 0 0" ></a-sphere>
+						<a-cylinder position="0 1.5 -3" radius="1" color="#FFB8FF"></a-cylinder>
+						<a-sphere scale="0.35 1 0.25" position="0.75 1.5 -3" rotation="0 90 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -2.5" rotation="0 45 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -2.25" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -2.5" rotation="0 -45 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.75 1.5 -3" rotation="0 -90 0" color="#FFB8FF"> </a-sphere>
+						
+						<!-- Ghost Legs -->
+						<a-sphere scale="0.35 1 0.25" position="0.5 1.5 -3.5" rotation="0 -45 0" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="0 1.5 -3.75" color="#FFB8FF"> </a-sphere>
+						<a-sphere scale="0.35 1 0.25" position="-0.5 1.5 -3.5" rotation="0 45 0" color="#FFB8FF"> </a-sphere>
+
+						<!-- Ghost Eyes -->
+						<a-sphere position="0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="-0.3 2 -2.15" radius="0.25" color="white"></a-sphere>
+						<a-sphere position="0.3 2 -1.95" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+						<a-sphere position="-0.3 2 -1.95" radius="0.1" scale="1 2 1" color="#0D98BA"></a-sphere>
+
+			</a-entity>
+
+			<a-box id="wall" position="24.5, 3, -10" color ="white" width="4" height="6"></a-box>
+			<a-box id="a" position="23, 2, -9" color ="white"></a-box>
+			<a-box id="p" position="24.5, 2, -9" color ="white"></a-box>
+			<a-box id="r" position="26, 2, -9" color ="white"></a-box>
+
 			<a-plane position="0 0 0" rotation="-90 0 0" width="150" height="150" color="#AAFFAA"></a-plane>
 			
 			
 			<a-sky color="white"></a-sky>
-			<a-camera position="5 10 36" id="camera"> 
+			<a-camera position="5 3 40" id="camera"> 
+				<a-cursor></a-cursor>
 			</a-camera>
         
         </a-scene>
