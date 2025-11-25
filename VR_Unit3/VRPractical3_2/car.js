@@ -19,7 +19,7 @@ class Car{
 
     start(){
         if (this.drive){
-            this.x+=this.dx;
+            this.z+=this.dx;
         }
         this.obj.setAttribute("position",{x:this.x, y:this.y, z:this.z});
     }
