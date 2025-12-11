@@ -24,6 +24,18 @@
         <img id="concrete" src="concrete.jpg">
       </a-assets>
 
+        <!--Generator-->
+        <a-entity id="gen" position="-9 0.5 10" rotation="0 -90 0">
+            <a-box  height="2" width="2" depth="1" color="#353935"></a-box>
+            <a-box height="0.25" width="0.5" depth="0.1" position="0.5 0.25 0.5" color="green"></a-box>
+            <a-box height="0.75" width="0.5" depth="0.1" position="-0.5 0.5 0.5" color="black"></a-box>
+
+            <a-box height="0.15" width="1.5" depth="0.1" position="0 -0.1 0.5" color=black></a-box>
+            <a-box height="0.15" width="1.5" depth="0.1" position="0 -0.3 0.5" color="black"></a-box>
+        </a-entity>
+        
+
+
         <!--Building 1-->
         <a-entity id="building1">
 
@@ -1516,7 +1528,7 @@
         </a-entity>
 
         <!--Fence set 3 (right)-->
-        <a-entity class="fenceset1" position="-4 0 -4" rotation="0 -90 0">
+        <a-entity class="fenceset3" position="-4 0 -4" rotation="0 -90 0">
             <!--right-->
             <a-entity class="fence" position="15 0 -24.3" rotation="0 90 0">
                 <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" color="#211e19"></a-box>
@@ -1830,7 +1842,7 @@
         </a-entity>
 
         <!--Fence set 4 (back)-->
-        <a-entity class="fenceset1" position="0 0 -8" rotation="0 180 0">
+        <a-entity class="fenceset4" position="0 0 -8" rotation="0 180 0">
             <!--right-->
             <a-entity class="fence" position="15 0 -24.3" rotation="0 90 0">
                 <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" color="#211e19"></a-box>
@@ -2143,6 +2155,10 @@
 
         </a-entity>
 
+        <!--Pathways-->
+        <a-box position="0 0 -4" height="0.1" width="40" depth="9.5" color="#343434"></a-box>
+        <a-box position="0 0 -4" height="0.1" width="40" depth="9.5" color="#343434" rotation="0 90 0"></a-box>
+
       <!--Enemy-->
         <a-entity id="mech-1" scale="0.25 0.25 0.25" position="0 -100000 0">
             <a-entity id = "main-mech" position = "0 -12 10" color = "red" width = "5" height = "5" depth = "5">
@@ -2330,14 +2346,16 @@
         </a-entity>
       
 
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="50" height="50" color="#7E7E74"></a-plane>
-        <a-sky src="#space" repeat="10 10"></a-sky>
+        
         <a-camera position="0 1.6 0">
             <a-cursor>
-            <a-text id="ammo" position="-3.65 -1.5 -1">ammo</a-text>
+                <a-text id="ammo" position="-3.5 1.2 -1">ammo</a-text>
+                <a-text id="timer" position="-3.5 1.5 -1">Timer</a-text>
             </a-cursor>
         </a-camera>
-
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="50" height="50" color="#7E7E74"></a-plane>
+        <a-sky src="#space" repeat="10 10"></a-sky>
+        
     </a-scene>
   </body>
 </html>

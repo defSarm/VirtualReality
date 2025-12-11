@@ -1,11 +1,12 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene,camera, bullet, enemies = [], ammo_boxes = [], ammo_count = 3, enemy_killed = 0;
+let scene,camera, bullet, enemies = [], ammo_boxes = [], ammo_count = 3, enemy_killed = 0,timer=100;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
   ammobox = document.querySelector("#ammobox");
   mech = document.querySelector("#mech-1");
+  timetext=document.querySelector("#timer");
 
 
   window.addEventListener("keydown",function(e){
@@ -16,8 +17,13 @@ window.addEventListener("DOMContentLoaded",function() {
       
     }
 
+    enemy = new Enemy(rnd(-20,20), rnd(-20,20));
+
+    
     
   })
+
+
 
   
   
@@ -29,14 +35,36 @@ function loop(){
   if(bullet){
     bullet.fire();
   }
- 
 
+  //enemy logic
+  
+
+  //ammo logic
+  if (timer <= 95 && ammo_boxes.length < 2){
+      for (let i = 0; i<=3;i++){
+        ammo_boxes.push(new Ammo(rnd(-20,20), rnd(-20, 20)));
+      }
+  }
+
+  for (let ammo of ammo_boxes){
+    ammo.rotate();
+    if (distance(ammo.obj,camera)<1.7){
+      ammo_count++;
+      ammo.obj.setAttribute("position",{x:0, y:-1000,z:0});
+      ammo_boxes.splice(ammo_boxes.indexOf(ammo),1);
+      
+    }
+  }
+ 
+  timetext.setAttribute("value",`Time Left:${timer}`);
   ammo.setAttribute("value",`Ammo: ${ammo_count}`);
   
+
   window.requestAnimationFrame(loop);
 }
 
 function countdown(){
+  timer-=1;
 
   setTimeout(countdown,1000);
 }

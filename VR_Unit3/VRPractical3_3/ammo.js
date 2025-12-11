@@ -3,7 +3,10 @@ class Ammo{
         this.x=x;
         this.z=z;
         this.dr=1;
+        this.dy=0.01;
         this.r = 0;
+        this.y=0;
+
 
         this.obj = ammobox.cloneNode(true);
         this.obj.setAttribute("position",{x:this.x,y:0,z:this.z});
@@ -12,8 +15,13 @@ class Ammo{
 
     rotate(){
         this.r+=this.dr;
+        this.y+=this.dy;
 
-        this.obj.setAttribute("position",{x:this.x,y:0,z:this.z});
+        if (this.y>0.5 || this.y<0){
+            this.dy=-this.dy;
+        }
+
+        this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
         this.obj.setAttribute("rotation",{x:0, y:this.r,z:0});
      
     }
