@@ -1,5 +1,5 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene,camera, bullet, enemies = [], ammo_boxes = [], ammo_count = 3, enemy_killed = 0,timer=100;
+let value, scene,camera, bullet, enemies = [], ammo_boxes = [], ammo_count = 3, enemy_killed = 0,timer=100;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -17,12 +17,24 @@ window.addEventListener("DOMContentLoaded",function() {
       
     }
 
-    enemy = new Enemy(rnd(-20,20), rnd(-20,20));
+    
 
     
     
   })
 
+
+  //enemy = new Enemy(-14, -26);
+  //enemy = new Enemy(10, -26);
+
+  //enemy = new Enemy(22, 10);
+  //enemy = new Enemy(22, -16);
+
+  //enemy = new Enemy(12, 18);
+  //enemy = new Enemy(-10, 18);
+
+  //enemy = new Enemy(-22, 7);
+  //enemy = new Enemy(-22, -16);
 
 
   
@@ -32,12 +44,44 @@ window.addEventListener("DOMContentLoaded",function() {
 })
 
 function loop(){
+  
+
+  //enemy logic
+  if (timer<=95 && enemies.length<8){
+    value = rnd(1,8);
+    if (value == 1){
+      enemies.push(new Enemy(-14, -26));
+    } else if (value==2){
+      enemies.push(new Enemy(10, -26));
+    } else if (value == 3){
+      enemies.push(new Enemy(22, 10));
+    } else if (value == 4){
+      enemies.push(new Enemy(22, -16));
+    } else if (value == 5){
+      enemies.push(new Enemy(12, 18));
+    } else if (value == 6){
+      enemies.push(new Enemy(-10, 18));
+    } else if (value == 7){
+      enemies.push(new Enemy(-22, 7));
+    } else if (value == 8){
+      enemies.push(new Enemy(-22, -16));
+    }
+     
+  }
+
+  // bullet logic
   if(bullet){
     bullet.fire();
   }
 
-  //enemy logic
-  
+  for (let enemy of enemies){
+    if (distance(enemy,bullet)<1){
+      enemy.obj.setAttribute("opacity", 1);
+      enemies.splice(enemies.indexOf(enemy),1);
+    }
+
+  }
+
 
   //ammo logic
   if (timer <= 95 && ammo_boxes.length < 2){
