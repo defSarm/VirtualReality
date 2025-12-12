@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
+    <script src="rock.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+
+    <!--
+    1) Add any of the preset environments provided by aframe-environment-component.  
+    Feel free to explore any of the additional options for an environment.
+
+    2) Add an ocean component provided by aframe-extras.  Make the component 5 x 5 and 
+    slightly above the ground.
+
+
+    3) Using loops and the Rock class provided, surround the ocean components with rocks.
+    -->
+
+    <a-scene>
+      <a-asset>
+        <img id="stone" src="stone.jpg" />
+      </a-asset>
+
+      <a-entity environment="preset: forest; groundColor: #445; skyColor: #88c; fog: 0.05"></a-entity>
+      
+      <a-ocean ></a-ocean>
+
+    </a-scene>
+      
+  </body>
+</html>
