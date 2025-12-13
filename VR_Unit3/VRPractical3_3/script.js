@@ -1,5 +1,5 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let value, scene,camera, bullet, enemies = [], ammo_boxes = [], ammo_count = 3, enemy_killed = 0,timer=100;
+let value, scene,camera,health=100,bullet, enemies = [], ammo_boxes = [], ammo_count = 3, enemy_killed = 0,timer=100;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -7,7 +7,11 @@ window.addEventListener("DOMContentLoaded",function() {
   ammobox = document.querySelector("#ammobox");
   mech = document.querySelector("#mech-1");
   timetext=document.querySelector("#timer");
+  killed = document.querySelector("#killed");
+  generator = document.querySelector("#gen");
+  genhealth=document.querySelector("#genhealth");
 
+  text = document.querySelector("#text");
 
   window.addEventListener("keydown",function(e){
     //User can only fire with they press the spacebar and have sufficient ammo
@@ -24,19 +28,19 @@ window.addEventListener("DOMContentLoaded",function() {
   })
 
 
-  //enemy = new Enemy(-14, -26);
-  //enemy = new Enemy(10, -26);
+  //enemy1 = new Enemy(-14, -26);
+  //enemy2 = new Enemy(10, -26);
 
-  //enemy = new Enemy(22, 10);
-  //enemy = new Enemy(22, -16);
+  //enemy1 = new Enemy(22, 10);
+  //enemy2 = new Enemy(22, -16);
 
-  //enemy = new Enemy(12, 18);
-  //enemy = new Enemy(-10, 18);
+  //enemy1 = new Enemy(12, 18);
+  //enemy2 = new Enemy(-10, 18);
 
-  //enemy = new Enemy(-22, 7);
-  //enemy = new Enemy(-22, -16);
+  //enemy1 = new Enemy(-22, 7);
+  //enemy2 = new Enemy(-22, -16);
 
-
+  
   
   
   setTimeout(loop,100);
@@ -44,11 +48,15 @@ window.addEventListener("DOMContentLoaded",function() {
 })
 
 function loop(){
-  
+  //enemy1.walk();
+  //enemy2.walk();
 
   //enemy logic
-  if (timer<=95 && enemies.length<8){
-    value = rnd(1,8);
+
+
+  if (timer<=95 && enemies.length<4){
+    value = Math.round(rnd(1,8));
+
     if (value == 1){
       enemies.push(new Enemy(-14, -26));
     } else if (value==2){
@@ -74,17 +82,28 @@ function loop(){
     bullet.fire();
   }
 
+
   for (let enemy of enemies){
-    if (distance(enemy,bullet)<1){
-      enemy.obj.setAttribute("opacity", 1);
-      enemies.splice(enemies.indexOf(enemy),1);
+    enemy.walk();
+    if (bullet){
+      if (distance(enemy.obj,bullet.obj)<2){
+        bullet.obj.setAttribute("position",{x:0,y:-19000,z:0});
+        enemy.obj.setAttribute("position", {x:0,y:-19000,z:0});
+        enemies.splice(enemies.indexOf(enemy),1);
+        enemy_killed+=1;
+      }
+      
+    }
+
+    if (distance(enemy.obj,generator)<2.5){
+      health-=0.05;
     }
 
   }
 
 
   //ammo logic
-  if (timer <= 95 && ammo_boxes.length < 2){
+  if (timer <= 95 && ammo_boxes.length < 4){
       for (let i = 0; i<=3;i++){
         ammo_boxes.push(new Ammo(rnd(-20,20), rnd(-20, 20)));
       }
@@ -93,15 +112,33 @@ function loop(){
   for (let ammo of ammo_boxes){
     ammo.rotate();
     if (distance(ammo.obj,camera)<1.7){
-      ammo_count++;
+      ammo_count+=3;
       ammo.obj.setAttribute("position",{x:0, y:-1000,z:0});
       ammo_boxes.splice(ammo_boxes.indexOf(ammo),1);
       
     }
   }
+
+  
  
   timetext.setAttribute("value",`Time Left:${timer}`);
   ammo.setAttribute("value",`Ammo: ${ammo_count}`);
+  killed.setAttribute("value",`Enemies Killed: ${enemy_killed}`);
+  genhealth.setAttribute("value",`Generator Health: ${health}`);
+  
+
+  if (health<=0 && timer!==0){
+    enemies=[];
+    text.setAttribute("value", `YOU LOSE!`);
+  }
+  if (timer<=100 && timer>=95){
+    text.setAttribute("value",`Protect the generator near your truck!`) 
+  }
+
+  if (health!==0 && timer == 0){
+    enemies=[];
+    text.setAttribute("value",`YOU WIN!!`);
+  }
   
 
   window.requestAnimationFrame(loop);

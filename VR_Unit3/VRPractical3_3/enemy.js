@@ -3,6 +3,7 @@ class Enemy{
         this.x = x;
         this.z = z;
         this.dx=0.05;
+        this.attack = false;
 
         this.obj = mech.cloneNode(true);
         this.obj.setAttribute("position", {x:this.x, y:2.5, z:this.z});
@@ -16,13 +17,12 @@ class Enemy{
         if (this.obj.object3D.position.x>= -14 && this.obj.object3D.position.x<=-3 && this.obj.object3D.position.z==-26){
             this.x+=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("1");
             
         }
 
         if (this.obj.object3D.position.x >= -3 && this.obj.object3D.position.x<=-2 && this.obj.object3D.position.z==-26){
             this.obj.setAttribute("rotation",{x:0, y:0, z:0});
-            console.log("1b");
+            this.center = true;
         }
 
         // spawnpoint2
@@ -30,12 +30,11 @@ class Enemy{
             this.obj.setAttribute("rotation",{x:0,y:-90,z:0});
             this.x-=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("2");
         }
         
         if (this.obj.object3D.position.x <= 3 && this.obj.object3D.position.x>=2 && this.obj.object3D.position.z==-26){
             this.obj.setAttribute("rotation",{x:0, y:0, z:0});
-            console.log("2b");
+            this.center = true;
         }
 
         // spawnpoint3
@@ -43,12 +42,11 @@ class Enemy{
             this.obj.setAttribute("rotation",{x:0,y:180,z:0});
             this.z-=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("3");
         }
         
         if (this.obj.object3D.position.z <= -1 && this.obj.object3D.position.z>=-2 && this.obj.object3D.position.x==22){
             this.obj.setAttribute("rotation",{x:0, y:-90, z:0});
-            console.log("3b");
+            this.center = true;
         }
 
         // spawnpoint4
@@ -56,13 +54,12 @@ class Enemy{
             this.obj.setAttribute("rotation",{x:0,y:0,z:0});
             this.z+=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("4");
             
         }
         
         if (this.obj.object3D.position.z >= -7 && this.obj.object3D.position.z <=-6 && this.obj.object3D.position.x==22){
             this.obj.setAttribute("rotation",{x:0, y:-90, z:0});
-            console.log("4b");
+            this.center = true;
         }
 
         // spawnpoint5
@@ -70,13 +67,12 @@ class Enemy{
             this.obj.setAttribute("rotation",{x:0,y:-90,z:0});
             this.x-=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("5");
         }
         
         
         if (this.obj.object3D.position.x <= 3 && this.obj.object3D.position.x >= 2 && this.obj.object3D.position.z==18){
             this.obj.setAttribute("rotation",{x:0, y:180, z:0});
-            console.log("5b");
+            this.center = true;
         }
 
         // spawnpoint6
@@ -84,13 +80,12 @@ class Enemy{
             this.obj.setAttribute("rotation",{x:0,y:90,z:0});
             this.x+=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("6");
         }
         
         
         if (this.obj.object3D.position.x >= -3 && this.obj.object3D.position.x<=-2 && this.obj.object3D.position.z==18){
             this.obj.setAttribute("rotation",{x:0, y:180, z:0});
-            console.log("6b");
+            this.center = true;
         }
 
         // spawnpoint7
@@ -98,12 +93,11 @@ class Enemy{
             this.obj.setAttribute("rotation",{x:0,y:180,z:0});
             this.z-=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("7");
             
         }
         if (this.obj.object3D.position.z <= -1 && this.obj.object3D.position.z>=-2 && this.obj.object3D.position.x==-22){
             this.obj.setAttribute("rotation",{x:0, y:90, z:0});
-            console.log("7b");
+            this.center = true;
         }
         
 
@@ -112,14 +106,80 @@ class Enemy{
             this.obj.setAttribute("rotation",{x:0,y:0,z:0});
             this.z+=this.dx;
             this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
-            console.log("8");
             
         }
         
         if (this.obj.object3D.position.z >= -7 && this.obj.object3D.position.z<=-6 && this.obj.object3D.position.x==-22){
             this.obj.setAttribute("rotation",{x:0, y:90, z:0});
-            console.log("8b");
+            this.center = true;
             
+        }
+
+        if (this.center){
+            if (this.obj.object3D.position.z<=-5 && this.obj.object3D.position.z>=-26){
+                this.z+=this.dx;
+                this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+                console.log("1");
+       
+            } 
+
+            if (this.obj.object3D.position.z<=19 && this.obj.object3D.position.z>=2 ){
+                this.z-=this.dx;
+                this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+                console.log("2");
+            
+            }
+
+            
+            if (this.obj.object3D.position.x<=23 && this.obj.object3D.position.x>=2){
+                
+                this.x-=this.dx;
+                this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+                console.log("3");
+      
+            }
+
+            if (this.obj.object3D.position.x>=-23 && this.obj.object3D.position.x<=-4){
+                this.x+=this.dx;
+                this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+                console.log("4");
+         
+            }
+            if ((this.obj.object3D.position.x<=2 && this.obj.object3D.position.x>=-4) && (this.obj.object3D.position.z>=-5 && this.obj.object3D.position.x<=2)){
+                this.attack=true;
+                this.center=false;
+            }
+        }
+
+
+       
+
+        
+
+        if (this.attack){
+            if (distance(generator,this.obj)>2){
+                if (generator.object3D.position.x>this.obj.object3D.position.x){
+                    this.x+=this.dx;
+                    this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+
+                }
+                if(generator.object3D.position.x<this.obj.object3D.position.x){
+                    this.x-=this.dx;
+                    this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+
+                } 
+                if(generator.object3D.position.z>this.obj.object3D.position.z){
+                    this.z+=this.dx;
+                    this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+
+                }
+                if(generator.object3D.position.z<this.obj.object3D.position.z){
+                    this.z-=this.dx;
+                    this.obj.setAttribute("position",{x:this.x, y:2.5, z:this.z});
+
+                }
+
+            } 
         }
     }
 

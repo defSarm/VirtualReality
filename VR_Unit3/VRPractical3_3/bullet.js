@@ -8,7 +8,7 @@ class Bullet{
     
     let theta = camera.object3D.rotation.y + Math.PI;
     let phi = camera.object3D.rotation.x;
-    let v = 0.1
+    let v = 0.2
     let v_xz = v * Math.cos(phi);
     this.dz = v_xz * Math.cos(theta);
     this.dx = v_xz * Math.sin(theta);
