@@ -12,6 +12,12 @@ window.addEventListener("DOMContentLoaded",function() {
     camera = document.querySelector("a-camera");
     handslot = document.querySelector("#handslot");
 
+    //handslot items
+    topbun1 = document.querySelector("#topbun1");
+    botbun1 = document.querySelector("#botbun1");
+    patty1 = document.querySelector("#patty1");
+    cheese1 = document.querySelector("#cheese1");
+    pickles1 = document.querySelector("#pickles1");
 
     topbun = document.querySelector("#topbun");
     botbun = document.querySelector("#botbun");
@@ -93,15 +99,8 @@ function list(item){
 function loop(){
   // skip by 3 x
     item = new Conveyor(-8);
-    for (food of hands){
-        if (food.id == "topbun"){            
-            handslot.append(food);
-            food.setAttribute("position", {x:0,y:2, z:0});
-            
-            console.log(food.object3D.position);
-            
-        }
-    }
+    
+    
 
     for (food of conveyoritems){
     

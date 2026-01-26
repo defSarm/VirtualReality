@@ -1,6 +1,5 @@
 let conveyNum;
 let itemNum;
-let clicked = false;
 let conveyors = [1, 4, 7, 10, 13];
 let limit1=0, limit2=0, limit3=0, limit4=0, limit5 = 0;
 
@@ -22,11 +21,15 @@ class Conveyor{
             if (itemNum == 1){
                 this.topbun.setAttribute("position",{x:conveyors[conveyNum-1], y:0, z:this.z});
                 list(this.topbun);
-                this.topbun.addEventListener("click", ()=>{
+                if (hands.length<1){
+                    this.topbun.addEventListener("click", ()=>{
+                        this.topbun.object3D.position.y=-10;
+                        hands.push(this.topbun);
+                        topbun1.setAttribute("position",{x:topbun1.x,y:-1.25,z:topbun1.z});
+                        console.log("clicked");
+                    });
+                }
                     
-                    hands.push(this.topbun);
-                    
-                });
         
                 scene.append(this.topbun);
             }
