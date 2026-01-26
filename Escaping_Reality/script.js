@@ -2,6 +2,7 @@ let scene,handslot;
 let con1=[], con2=[], con3=[], con4=[], con5=[];
 let conveyoritems = [con1,con2,con3,con4,con5];
 let hands = [];
+let run =false;
 
 function rnd(l, u){
   return Math.floor(Math.random()*(u-l) + l);
@@ -11,6 +12,7 @@ window.addEventListener("DOMContentLoaded",function() {
     scene = document.querySelector("a-scene");
     camera = document.querySelector("a-camera");
     handslot = document.querySelector("#handslot");
+    trashcan = document.querySelector("#trashcan");
 
     //handslot items
     topbun1 = document.querySelector("#topbun1");
@@ -30,42 +32,42 @@ window.addEventListener("DOMContentLoaded",function() {
 
 // function checks if the conveyor is full or not and continues to check
 function conveyorcheck(){
-    if (limit1<5 || limit2<5 || limit3<5 || limit4<5 || limit5<5){
+    
+    if (con1.length<5 || con2.length<5 || con3.length<5 || con4.length<5 || con5.length<5){
         while (conveyNum == 1){
-            if(limit1<5){
-                limit1++;
+            if(con1.length<5){
+            
                 return true;
             } else{
                 conveyNum++;
             }
         }
         while (conveyNum == 2){
-            if(limit2<5){
-                limit2++;
+            if(con2.length<5){
+
                 return true;
             } else{
                 conveyNum++;
             }
         }
         while (conveyNum == 3){
-            if(limit3<5){
-                limit3++;
+            if(con3.length<5){
                 return true;
             } else{
                 conveyNum++;
             }
         }
         while (conveyNum == 4){
-            if(limit4<5){
-                limit4++;
+            if(con4.length<5){
+
                 return true;
             } else{
                 conveyNum++;
             }
         }
         while (conveyNum == 5){
-            if(limit5<5){
-                limit5++;
+            if(con5.length<5){
+
                 return true;
             } else{
                 conveyNum=1;
@@ -78,59 +80,84 @@ function conveyorcheck(){
 }
 
 // function puts all items into an array of arrays
-function list(item){
+function listadd(item){
     if (conveyNum==1){
         con1.push(item);
+        item.array = con1;
     }
     if (conveyNum==2){
         con2.push(item);
+        item.array=con2;
     }
     if (conveyNum==3){
         con3.push(item);
+        item.array=con3;
     }
     if (conveyNum==4){
         con4.push(item);
+        item.array=con4;
     }
     if (conveyNum==5){
         con5.push(item);
+        item.array=con5;
     }
 }
+
+// perhaps work with this
+function listpop(item){
+    item.array.shift();
+    
+}
+
 
 function loop(){
   // skip by 3 x
     item = new Conveyor(-8);
-    
-    
+    item.conveyorfill();
 
-    for (food of conveyoritems){
-    
-        if (food.length==5){
-            
-            for (items of food){
-                
+    trashcan.addEventListener("click", ()=>{
+        if (hands.length==1){
+            hands.pop();
+            topbun1.setAttribute("position",{x:topbun1.x,y:-10,z:topbun1.z});
+            pickles1.setAttribute("position", {x:pickles1.x,y:-10,z:pickles1.z});
+            botbun1.setAttribute("opacity",0);
+            cheese1.setAttribute("opacity",0);
+            patty1.setAttribute("opacity",0);
+        }
+    });
+    console.log(con1);
 
-                if(food.indexOf(items)==food.length-1 && items.object3D.position.z<-0.8){
+    if(con1.length==5 && con2.length==5 && con3.length==5 && con4.length==5 && con5.length==5){
+        run = true
+    }
+
+    for (food of conveyoritems){    
+        
+        for (items of food){
+            if (run){
+                if(food.indexOf(items)==0 && items.object3D.position.z<-0.8){
                     items.object3D.position.z = -0.8;
                     //console.log("running");
                 }
-                if(food.indexOf(items)==food.length-2 && items.object3D.position.z<-2.4){
+                if(food.indexOf(items)==1 && items.object3D.position.z<-2.4){
                     items.object3D.position.z = -2.4;
                     //console.log("running2");
                 }
-                if(food.indexOf(items)==food.length-3 && items.object3D.position.z<-4){
+                if(food.indexOf(items)==2 && items.object3D.position.z<-4){
                     items.object3D.position.z = -4;
                     //console.log("running3");
                 }
-                if(food.indexOf(items)==food.length-4 && items.object3D.position.z<-5.4){
+                if(food.indexOf(items)==3 && items.object3D.position.z<-5.4){
                     items.object3D.position.z = -5.4;
                     //console.log("running4");
                 }
-                if(food.indexOf(items)==food.length-5 && items.object3D.position.z<-6.8){
+                if(food.indexOf(items)==4 && items.object3D.position.z<-6.8){
                     items.object3D.position.z = -6.8;
                     //console.log("running5");
                 }
-            }
+            } 
         }
+        
     }
     window.requestAnimationFrame( loop );
 }

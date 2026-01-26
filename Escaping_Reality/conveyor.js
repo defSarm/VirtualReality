@@ -15,57 +15,106 @@ class Conveyor{
         this.cheese = cheese.cloneNode(true);
 
         conveyNum=1;
-        itemNum = rnd(1,6);
+        
 
+    }
+
+    
+    conveyorfill(){
+        console.log("running");
+        itemNum = rnd(1,6);
         if(conveyorcheck()){
             if (itemNum == 1){
                 this.topbun.setAttribute("position",{x:conveyors[conveyNum-1], y:0, z:this.z});
-                list(this.topbun);
-                if (hands.length<1){
-                    this.topbun.addEventListener("click", ()=>{
+                listadd(this.topbun);
+        
+                this.topbun.addEventListener("click", ()=>{
+                    if(hands.length<1 && this.topbun.object3D.position.z==-0.8){
                         this.topbun.object3D.position.y=-10;
                         hands.push(this.topbun);
+
+                        listpop(this.topbun);
                         topbun1.setAttribute("position",{x:topbun1.x,y:-1.25,z:topbun1.z});
-                        console.log("clicked");
-                    });
-                }
+                        
+                    }
+                    
+                });
+           
                     
         
                 scene.append(this.topbun);
             }
             if (itemNum == 2){
                 this.botbun.setAttribute("position",{x:conveyors[conveyNum-1], y:1.25, z:this.z});
-                list(this.botbun)
-                this.botbun.addEventListener("click", ()=>{
-                    console.log(items);
-                    this.botbun.setAttribute("position",{x:camera.object3D.position.x, y:camera.object3D.position.y, z:camera.object3D.position.z});
-                });;
+                listadd(this.botbun)
+               
+                 this.botbun.addEventListener("click", ()=>{
+                    if (hands.length<1 && this.botbun.object3D.position.z==-0.8){
+                        this.botbun.object3D.position.y=-10;
+                        hands.push(this.botbun);
+                        listpop(this.botbun);
+                        botbun1.setAttribute("opacity",1);
+                    }
+                     
+                 });
+                
            
                 scene.append(this.botbun);
             }
             if (itemNum == 3){
                 this.pickles.setAttribute("position",{x:conveyors[conveyNum-1], y:1.25, z:this.z});
-                list(this.pickles);
+                listadd(this.pickles);
+                this.pickles.addEventListener("click", ()=>{
+                    if (hands.length<1 && this.pickles.object3D.position.z==-0.8){
+                        this.pickles.object3D.position.y=-10;
+                        hands.push(this.pickles);
+                        listpop(this.pickles);
+                        pickles1.setAttribute("position",{x:0.05,y:0,z:0.2});
+                        
+                    }
+                    
+                });
                 
 
                 scene.append(this.pickles); 
             }
             if (itemNum == 4){
                 this.patty.setAttribute("position",{x:conveyors[conveyNum-1], y:1.25, z:this.z});
-                list(this.patty);
-              
+                listadd(this.patty);
+                this.patty.addEventListener("click", ()=>{
+                    if (hands.length<1 && this.patty.object3D.position.z==-0.8){
+                        this.patty.object3D.position.y=-10;
+                        hands.push(this.patty);
+                        listpop(this.patty);
+                        patty1.setAttribute("opacity",1);
+                        
+                    }
+                    
+                });
+                
+
                 scene.append(this.patty);  
             }
             if (itemNum == 5){
                 this.cheese.setAttribute("position",{x:conveyors[conveyNum-1], y:1.25, z:this.z});
-                list(this.cheese);
+                listadd(this.cheese);
+                this.cheese.addEventListener("click", ()=>{
+                    if (hands.length<1 && this.cheese.object3D.position.z==-0.8){
+                        this.cheese.object3D.position.y=-10;
+                        listpop(this.cheese);
+                        hands.push(this.cheese);
+                        cheese1.setAttribute("opacity",1);
+                           
+                    }
+                    
+                });
                 
                 scene.append(this.cheese);
             } 
 
         }
-
     }
+        
 
     randomize(){
         conveyNum=1;
@@ -107,6 +156,8 @@ class Conveyor{
                 
         
     }
+
+
     
     move(item){
         if (!(item.object3D.position.z==-0.8)){
