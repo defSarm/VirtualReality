@@ -2,6 +2,7 @@ let scene,handslot;
 let con1=[], con2=[], con3=[], con4=[], con5=[];
 let conveyoritems = [con1,con2,con3,con4,con5];
 let hands = [];
+let p1 = [], p2 = [];
 let run =false;
 
 function rnd(l, u){
@@ -13,6 +14,10 @@ window.addEventListener("DOMContentLoaded",function() {
     camera = document.querySelector("a-camera");
     handslot = document.querySelector("#handslot");
     trashcan = document.querySelector("#trashcan");
+
+    // plates
+    plate1 = document.querySelector("#plate1");
+    plate2 = document.querySelector("#plate2");
 
     //handslot items
     topbun1 = document.querySelector("#topbun1");
@@ -109,6 +114,34 @@ function listpop(item){
     
 }
 
+function plateadd(plate, item){
+    if(plate == p1){
+        item.x=0;
+    } else{
+        item.x =2;
+    }
+
+    if (plate.length==0){
+        if (item.id == "topbun"){
+            item.setAttribute("position",{x:item.x, y:0.15, z:6.75});
+        }
+        else{
+            item.setAttribute("position",{x:item.x,y:1.4,z:6.75});
+        }
+    }
+    if (plate.length==1){
+        if (item.id == "topbun"){
+            item.setAttribute("position",{x:item.x, y:0.25, z:6.75});
+        }
+        else{
+            item.setAttribute("position",{x:item.x,y:1.4,z:6.75});
+        }
+    }
+}
+
+function plateremove(plate, item){
+    
+}
 
 function loop(){
   // skip by 3 x
@@ -125,7 +158,40 @@ function loop(){
             patty1.setAttribute("opacity",0);
         }
     });
-    console.log(con1);
+
+    plate1.addEventListener("click", ()=>{
+        if (hands.length==1 && p1.length<1){
+            plateadd(p1, hands[0]);
+            p1.push(hands[0]);
+            
+            // delete item from hands
+            topbun1.setAttribute("position",{x:topbun1.x,y:-10,z:topbun1.z});
+            pickles1.setAttribute("position", {x:pickles1.x,y:-10,z:pickles1.z});
+            botbun1.setAttribute("opacity",0);
+            cheese1.setAttribute("opacity",0);
+            patty1.setAttribute("opacity",0);
+
+
+            hands.pop();
+        }
+    });
+
+    plate2.addEventListener("click", ()=>{
+        if (hands.length==1 && p2.length<1){
+            plateadd(p2, hands[0]);
+            p2.push(hands[0]);
+            
+            // delete item from hands
+            topbun1.setAttribute("position",{x:topbun1.x,y:-10,z:topbun1.z});
+            pickles1.setAttribute("position", {x:pickles1.x,y:-10,z:pickles1.z});
+            botbun1.setAttribute("opacity",0);
+            cheese1.setAttribute("opacity",0);
+            patty1.setAttribute("opacity",0);
+
+
+            hands.pop();
+        }
+    });
 
     if(con1.length==5 && con2.length==5 && con3.length==5 && con4.length==5 && con5.length==5){
         run = true
@@ -161,10 +227,3 @@ function loop(){
     }
     window.requestAnimationFrame( loop );
 }
-
-    
-    
-  
-    
-    
-

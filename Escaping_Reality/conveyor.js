@@ -21,7 +21,6 @@ class Conveyor{
 
     
     conveyorfill(){
-        console.log("running");
         itemNum = rnd(1,6);
         if(conveyorcheck()){
             if (itemNum == 1){
