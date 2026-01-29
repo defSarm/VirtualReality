@@ -2,7 +2,7 @@ let scene,handslot;
 let con1=[], con2=[], con3=[], con4=[], con5=[];
 let conveyoritems = [con1,con2,con3,con4,con5];
 let hands = [];
-let p1 = [], p2 = [];
+let p1 = [], p2 = [], sp =[];
 let run =false;
 
 function rnd(l, u){
@@ -18,6 +18,7 @@ window.addEventListener("DOMContentLoaded",function() {
     // plates
     plate1 = document.querySelector("#plate1");
     plate2 = document.querySelector("#plate2");
+    servingplate = document.querySelector("#serving");
 
     //handslot items
     topbun1 = document.querySelector("#topbun1");
@@ -108,17 +109,21 @@ function listadd(item){
     }
 }
 
-// perhaps work with this
+// removal of items from lists
 function listpop(item){
     item.array.shift();
     
 }
 
+// add or stack items onto plates
 function plateadd(plate, item){
+
     if(plate == p1){
         item.x=0;
-    } else{
+    } else if (plate == p2){
         item.x =2;
+    } else{ //serving plate
+        item.x=-6;
     }
 
     if (plate.length==0){
@@ -129,20 +134,92 @@ function plateadd(plate, item){
             item.setAttribute("position",{x:item.x,y:1.4,z:6.75});
         }
     }
-    if (plate.length==1){
-        if (item.id == "topbun"){
-            item.setAttribute("position",{x:item.x, y:0.25, z:6.75});
-        }
-        else{
-            item.setAttribute("position",{x:item.x,y:1.4,z:6.75});
-        }
-    }
-}
 
-function plateremove(plate, item){
+    // stackable plates
+    if (plate == sp){
+        if (plate.length==0){
+            if (item.id == "topbun"){
+                item.setAttribute("position",{x:item.x, y:0.15, z:6.75});
+            }
+            else{
+                item.setAttribute("position",{x:item.x,y:1.4,z:6.75});
+            }
+        }
+
+        if (plate.length==1){
+            if (item.id == "topbun"){
+                item.setAttribute("position",{x:item.x, y:0.23, z:6.75});
+            }
+            else{
+                item.setAttribute("position",{x:item.x,y:1.48,z:6.75});
+            }
+        } 
+
+        if (plate.length==2){
+            if (item.id == "topbun"){
+                item.setAttribute("position",{x:item.x, y:0.33, z:6.75});
+            }
+            else{
+                item.setAttribute("position",{x:item.x,y:1.58,z:6.75});
+            }
+        } 
+
+        if (plate.length==3){
+            if (item.id == "topbun"){
+                item.setAttribute("position",{x:item.x, y:0.43, z:6.75});
+            }
+            else{
+                item.setAttribute("position",{x:item.x,y:1.68,z:6.75});
+            }
+        } 
+
+        if (plate.length==4){
+            if (item.id == "topbun"){
+                item.setAttribute("position",{x:item.x, y:0.53, z:6.75});
+            }
+            else{
+                item.setAttribute("position",{x:item.x,y:1.78,z:6.75});
+            }
+        } 
+    }
     
 }
 
+// remove items from plate
+function plateremove(plate, item){
+
+    if (plate.length==1){
+        item.setAttribute("position", {x:0,y:-10,z:0});
+        hands.push(item);
+        plate.pop();
+        if (item.id=="topbun"){
+
+            topbun1.setAttribute("position",{x:topbun1.x,y:-1.25,z:topbun1.z});
+        }
+        else if(item.id=="botbun"){
+
+            botbun1.setAttribute("opacity",1);
+        }
+        else if (item.id == "pickles"){
+
+            pickles1.setAttribute("position", {x:pickles1.x,y:0,z:pickles1.z});
+        }
+        else if (item.id == "cheese"){
+
+            cheese1.setAttribute("opacity",1);
+        }
+        else if (item.id == "patty"){
+
+            patty1.setAttribute("opacity",1);
+        }
+        
+    } 
+
+}
+
+
+
+// game loop
 function loop(){
   // skip by 3 x
     item = new Conveyor(-8);
@@ -159,8 +236,28 @@ function loop(){
         }
     });
 
+    // serving plate (stackable) -- increase area
+
+    servingplate.addEventListener("click", ()=>{
+        if (hands.length == 1 && sp.length<5){
+            plateadd(sp,hands[0]);
+            sp.push(hands[0]);
+            // delete item from hands
+            topbun1.setAttribute("position",{x:topbun1.x,y:-10,z:topbun1.z});
+            pickles1.setAttribute("position", {x:pickles1.x,y:-10,z:pickles1.z});
+            botbun1.setAttribute("opacity",0);
+            cheese1.setAttribute("opacity",0);
+            patty1.setAttribute("opacity",0);
+            hands.pop();
+        }
+    });
+
+    
+
+    // plate 1 (non stackable)
+    
     plate1.addEventListener("click", ()=>{
-        if (hands.length==1 && p1.length<1){
+        if (hands.length==1 && p1.length==0){
             plateadd(p1, hands[0]);
             p1.push(hands[0]);
             
@@ -174,8 +271,17 @@ function loop(){
 
             hands.pop();
         }
+
     });
 
+    window.addEventListener("keydown", function(e){
+        if (e.key == "e" && hands.length==0 && p1.length==1){
+            plateremove(p1,p1[0]);
+        }  
+    });
+
+    
+    // plate 2 (non stackable)
     plate2.addEventListener("click", ()=>{
         if (hands.length==1 && p2.length<1){
             plateadd(p2, hands[0]);
@@ -192,6 +298,13 @@ function loop(){
             hands.pop();
         }
     });
+
+    window.addEventListener("keydown", function(e){
+        if (e.key == "e" && hands.length==0 && p2.length==1){
+            plateremove(p2,p2[0]);
+        }
+    });
+
 
     if(con1.length==5 && con2.length==5 && con3.length==5 && con4.length==5 && con5.length==5){
         run = true
