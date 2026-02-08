@@ -1,9 +1,11 @@
-let scene,handslot;
+let scene,handslot,capacity=0,served=true,count=0;
+let people = [];
 let con1=[], con2=[], con3=[], con4=[], con5=[];
 let conveyoritems = [con1,con2,con3,con4,con5];
 let hands = [];
+let order = [];
 let p1 = [], p2 = [], sp =[];
-let run =false;
+let run=false,hover1=false,hover2=false,hover3 =false;
 
 function rnd(l, u){
   return Math.floor(Math.random()*(u-l) + l);
@@ -19,6 +21,7 @@ window.addEventListener("DOMContentLoaded",function() {
     plate1 = document.querySelector("#plate1");
     plate2 = document.querySelector("#plate2");
     servingplate = document.querySelector("#serving");
+    bell = document.querySelector("#bell");
 
     //handslot items
     topbun1 = document.querySelector("#topbun1");
@@ -33,6 +36,15 @@ window.addEventListener("DOMContentLoaded",function() {
     pickles = document.querySelector("#pickles");
     cheese = document.querySelector("#cheese");
     
+    // customers
+    customer1 = document.querySelector("#customer1");
+    customer2 = document.querySelector("#customer2");
+    customer3 = document.querySelector("#customer3");
+
+    customerburger = document.querySelector("#customerburger");
+
+    
+
     setTimeout(loop, 1000);
 })
 
@@ -123,7 +135,7 @@ function plateadd(plate, item){
     } else if (plate == p2){
         item.x =2;
     } else{ //serving plate
-        item.x=-6;
+        item.x=-5.6;
     }
 
     if (plate.length==0){
@@ -188,7 +200,7 @@ function plateadd(plate, item){
 // remove items from plate
 function plateremove(plate, item){
 
-    if (plate.length==1){
+    if (plate.length>0){
         item.setAttribute("position", {x:0,y:-10,z:0});
         hands.push(item);
         plate.pop();
@@ -224,6 +236,48 @@ function loop(){
   // skip by 3 x
     item = new Conveyor(-8);
     item.conveyorfill();
+    
+    customerorder = new Menu(1)
+
+
+    // customer logic 
+
+    if (ready&& capacity<5){
+        cstmr = new Customer(16,3);
+    }
+
+    for (let customer of spawnedcustomers){
+
+        cstmr.move(customer,customer.object3D.position.z);
+    }
+
+    for (let customer of people){
+        cstmr.enterline(customer);
+        if (Math.round(customer.object3D.position.x)==-6 && served){
+            customerorder.choose();
+            customerorder.display();
+            served=false;
+        }
+    }
+
+    // confirm order matching
+    bell.addEventListener("click",()=>{
+        if (sp.length>=1 && order.length>=1){
+
+            for (let i = 0; i<sp.length;i++){
+                if (sp[i].id==order[i] && sp.length==order.length){
+                    count+=1;
+                    
+                }
+            }
+            if (count==order.length){
+                console.log("correct");
+                count=0;
+            }
+            cstmr.exitline(people[0], sp);
+        }
+    });
+    
 
     trashcan.addEventListener("click", ()=>{
         if (hands.length==1){
@@ -252,6 +306,12 @@ function loop(){
         }
     });
 
+    servingplate.addEventListener("mouseenter", ()=>{
+        hover3=true;
+    });
+    servingplate.addEventListener("mouseleave", ()=>{
+        hover3=false;
+    });
     
 
     // plate 1 (non stackable)
@@ -274,14 +334,17 @@ function loop(){
 
     });
 
-    window.addEventListener("keydown", function(e){
-        if (e.key == "e" && hands.length==0 && p1.length==1){
-            plateremove(p1,p1[0]);
-        }  
+    plate1.addEventListener("mouseenter", ()=>{
+        hover1=true;
     });
+    plate1.addEventListener("mouseleave",()=>{
+        hover1=false;
+    });
+    
 
     
     // plate 2 (non stackable)
+    
     plate2.addEventListener("click", ()=>{
         if (hands.length==1 && p2.length<1){
             plateadd(p2, hands[0]);
@@ -299,12 +362,30 @@ function loop(){
         }
     });
 
-    window.addEventListener("keydown", function(e){
-        if (e.key == "e" && hands.length==0 && p2.length==1){
-            plateremove(p2,p2[0]);
-        }
+    plate2.addEventListener("mouseenter", ()=>{
+        hover2=true;
     });
+    plate2.addEventListener("mouseleave", ()=>{
+        hover2=false;
+    });
+    
 
+    window.addEventListener("keydown", function(e){
+        //plate1
+        if (e.key == "e" && hands.length==0 && p1.length==1 && hover1){
+            plateremove(p1,p1[0]);
+        }  
+
+        //plate2
+        if (e.key == "e" && hands.length==0 && p2.length==1 && hover2){
+            plateremove(p2,p2[0]);
+        } 
+
+        if (e.key == "e" && hands.length==0 && sp.length<6 && hover3){
+            plateremove(sp,sp.at(-1));
+        }
+
+    });
 
     if(con1.length==5 && con2.length==5 && con3.length==5 && con4.length==5 && con5.length==5){
         run = true

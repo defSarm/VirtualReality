@@ -5,58 +5,77 @@
     <script src="script.js"></script>
     <script src="kinema.js"></script>
     <script src="conveyor.js"></script>
-    <script src="extra.js"></script>
+    <script src="menu.js"></script>
+    <script src="customers.js"></script>
 
     <style >*{cursor:none}</style>
 
   </head>
   <body>
     <a-scene physics="debug: false">
+        <a-assests>
+            <img src="burgeritems/topbun.png" id="topbunimg">
+            <img src="burgeritems/bottombun.png" id="botbunimg">
+            <img src="burgeritems/cheese.png" id="cheeseimg">
+            <img src="burgeritems/patty.png" id="pattyimg">
+            <img src="burgeritems/pickles.png" id="picklesimg">
+        </a-assests>
+
+    <!--customer orders-->
+        <a-entity id="orders" position="-7.25 1.5 8.5" rotation="0 -25 0">
+            <a-box id="slot1" opacity = 0 position="0 0 0" height="0.3" depth="0.1"></a-box>
+            <a-box id="slot2" opacity = 0 position="0 0.3 0" height="0.3" depth="0.1"></a-box>
+            <a-box id="slot3" opacity = 0 position="0 0.6 0" height="0.3" depth="0.1"></a-box>
+            <a-box id="slot4" opacity = 0 position="0 0.9 0" height="0.3" depth="0.1"></a-box>
+            <a-box id="slot5" opacity = 0 position="0 1.2 0" height="0.3" depth="0.1"></a-box>
+        </a-entity>
+
+        <a-entity id="customerburger"></a-entity>
 
     <!--customer-->
-    <a-entity id="customer1" position="-3 0.1 13" rotation="0 180 0">
-      <a-box position="-0.2 2 0.42" rotation="0 0 5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
-      <a-box position="0.2 2 0.42" rotation="0 0 -5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
-      <a-sphere position="-0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
-      <a-sphere position="0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
-      <a-sphere position="0 1.6 0" radius="0.5" theta-start="0" theta-length="90" color="	"></a-sphere>
-      <a-cylinder position="0 1.1 0" radius="0.5" color="	#301934"></a-cylinder>
-      <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
-    </a-entity>
+        <a-entity id="customer1" position="-6 -10 9" rotation="0 180 0">
+            <a-box position="-0.2 2 0.42" rotation="0 0 5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
+            <a-box position="0.2 2 0.42" rotation="0 0 -5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
+            <a-sphere position="-0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
+            <a-sphere position="0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
+            <a-sphere position="0 1.6 0" radius="0.5" theta-start="0" theta-length="90" color="	"></a-sphere>
+            <a-cylinder position="0 1.1 0" radius="0.5" color="	#301934"></a-cylinder>
+            <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
+        </a-entity>
 
-    <a-entity id="customer2" position="3 0.1 13" rotation="0 180 0">
-      <a-sphere position="0 1.8 -0.01" radius="0.45" theta-start="0" theta-length="80" side="double" rotation="-5 0 0" color="#333232"></a-sphere>
-      <a-cylinder radius="0.4" position="0 1.9 -0.35" height="0.1" rotation="-5 0 0" color="#333232"></a-cylinder>
+        <a-entity id="customer2" position="3 -10 13" rotation="0 180 0">
+            <a-sphere position="0 1.8 -0.01" radius="0.45" theta-start="0" theta-length="80" side="double" rotation="-5 0 0" color="#333232"></a-sphere>
+            <a-cylinder radius="0.4" position="0 1.9 -0.35" height="0.1" rotation="-5 0 0" color="#333232"></a-cylinder>
 
-      <a-box position="-0.2 2 0.42" rotation="0 0 5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
-      <a-box position="0.2 2 0.42" rotation="0 0 -5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
-      <a-sphere position="-0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
-      <a-sphere position="0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
-      <a-sphere position="0 1.6 0" radius="0.5" theta-start="0" theta-length="90" color="	"></a-sphere>
-      <a-cylinder position="0 1.1 0" radius="0.5" color="	#478778"></a-cylinder>
-      <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
-    </a-entity>
+            <a-box position="-0.2 2 0.42" rotation="0 0 5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
+            <a-box position="0.2 2 0.42" rotation="0 0 -5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
+            <a-sphere position="-0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
+            <a-sphere position="0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
+            <a-sphere position="0 1.6 0" radius="0.5" theta-start="0" theta-length="90" color="	"></a-sphere>
+            <a-cylinder position="0 1.1 0" radius="0.5" color="	#478778"></a-cylinder>
+            <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
+        </a-entity>
 
-    <a-entity id="customer3" position="0 0.1 13" rotation="0 180 0">
-      <a-entity id="earbudL" position="-0.43 1.8 0.1" rotation="-10 0 -5" scale="0.9 0.9 0.9">
-        <a-cylinder position="0 0 0"  rotation="0 0 90" height="0.05" radius="0.1" color="black"></a-cylinder>
-        <a-sphere position="0 0 0" rotation="0 0 90" radius="0.1" color="#E3E3E3"></a-sphere>
-        <a-box position="-0.1 -0.1 0" width="0.05" height="0.2" depth="0.05" color="#E3E3E3"></a-box>
-      </a-entity>
-      <a-entity id="earbudR" position="0.43 1.8 0.1" rotation="10 180 -5" scale="0.9 0.9 0.9">
-        <a-cylinder position="0 0 0"  rotation="0 0 90" height="0.05" radius="0.1" color="black"></a-cylinder>
-        <a-sphere position="0 0 0" rotation="0 0 90" radius="0.1" color="#E3E3E3"></a-sphere>
-        <a-box position="-0.1 -0.1 0" width="0.05" height="0.2" depth="0.05" color="#E3E3E3"></a-box>
-      </a-entity>
+        <a-entity id="customer3" position="0 -10 13" rotation="0 180 0">
+            <a-entity id="earbudL" position="-0.43 1.8 0.1" rotation="-10 0 -5" scale="0.9 0.9 0.9">
+                <a-cylinder position="0 0 0"  rotation="0 0 90" height="0.05" radius="0.1" color="black"></a-cylinder>
+                <a-sphere position="0 0 0" rotation="0 0 90" radius="0.1" color="#E3E3E3"></a-sphere>
+                <a-box position="-0.1 -0.1 0" width="0.05" height="0.2" depth="0.05" color="#E3E3E3"></a-box>
+            </a-entity>
+            <a-entity id="earbudR" position="0.43 1.8 0.1" rotation="10 180 -5" scale="0.9 0.9 0.9">
+                <a-cylinder position="0 0 0"  rotation="0 0 90" height="0.05" radius="0.1" color="black"></a-cylinder>
+                <a-sphere position="0 0 0" rotation="0 0 90" radius="0.1" color="#E3E3E3"></a-sphere>
+                <a-box position="-0.1 -0.1 0" width="0.05" height="0.2" depth="0.05" color="#E3E3E3"></a-box>
+            </a-entity>
 
-      <a-box position="-0.2 2 0.42" rotation="0 0 5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
-      <a-box position="0.2 2 0.42" rotation="0 0 -5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
-      <a-sphere position="-0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
-      <a-sphere position="0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
-      <a-sphere position="0 1.6 0" radius="0.5" theta-start="0" theta-length="90" color="	"></a-sphere>
-      <a-cylinder position="0 1.1 0" radius="0.5" color="#954535"></a-cylinder>
-      <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
-    </a-entity>
+            <a-box position="-0.2 2 0.42" rotation="0 0 5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
+            <a-box position="0.2 2 0.42" rotation="0 0 -5" width="0.25" height="0.05" depth="0.05" color="black"></a-box>
+            <a-sphere position="-0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
+            <a-sphere position="0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
+            <a-sphere position="0 1.6 0" radius="0.5" theta-start="0" theta-length="90" color="	"></a-sphere>
+            <a-cylinder position="0 1.1 0" radius="0.5" color="#954535"></a-cylinder>
+            <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
+        </a-entity>
     
 
     <!--food items-->
@@ -74,7 +93,12 @@
         </a-entity>
         <a-box id="cheese" position="1 -10 0" height="0.05" width="1.1" depth="1.1" color="#f9de3f"> </a-box>
         
-
+    <!--bell-->
+        <a-entity id="bell" position="-4.3 1.2 6.4">
+            <a-cylinder radius="0.3" height="0.05" color="#5C4033"></a-cylinder>
+            <a-sphere radius="0.25" color="#F0E68C"></a-sphere>
+            <a-cylinder radius="0.03" height="0.1" color="#7393B3" position="0 0.23 0"></a-cylinder>
+        </a-entity>
  
     <!--Kitchen-->
         
@@ -145,7 +169,7 @@
 
         </a-entity>
 
-        <a-entity id="serving" position="-6 0.76 6.75">
+        <a-entity id="serving" position="-5.6 0.76 6.75">
             <a-text value="Serve Here" side="double" position="0.55 2 0" rotation="0 180 0" color="#191970"></a-text>
             <a-cylinder position="0 0.5 0" radius="0.6" height="0.1" color="	#EEDC82"></a-cylinder>
             <a-cylinder position="0 0.57 0" radius="0.75" height="0.1"></a-cylinder>
