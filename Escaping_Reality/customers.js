@@ -1,5 +1,6 @@
 let spawnpoint, randomcustomer,ready=true, spawnposition;
 let listofcustomers = [], spawnedcustomers = [];
+let seat;
 
 class Customer{
     constructor(x, z){
@@ -138,10 +139,78 @@ class Customer{
     
     exitline(person, burger){
         for (let item of burger){
-            customerburger.append(item);
+            if (burger.indexOf(item)==0){
+                if (item.id == "topbun"){
+                    item.setAttribute("position",{x:person.object3D.position.x, y:person.object3D.position.y-0.2, z:person.object3D.position.z-1});
+                } else{
+                    item.setAttribute("position",{x:person.object3D.position.x, y:person.object3D.position.y+1, z:person.object3D.position.z-1});
+                }
+                
+            }
+            if (burger.indexOf(item)==1){
+                if (item.id == "topbun"){
+                    item.setAttribute("position",{x:person.object3D.position.x, y:person.object3D.position.y-0.1, z:person.object3D.position.z-1});
+                } else{
+                    item.setAttribute("position",{x:person.object3D.position.x, y:person.object3D.position.y+1.1, z:person.object3D.position.z-1});
+                }
+                
+            }
+            if (burger.indexOf(item)==2){
+                if (item.id == "topbun"){
+                    item.setAttribute("position",{x:person.object3D.position.x, y:person.object3D.position.y, z:person.object3D.position.z-1});
+                } else{
+                    item.setAttribute("position", {x:person.object3D.position.x, y:person.object3D.position.y+1.2, z:person.object3D.position.z-1}); 
+                }
+                
+            }
+            if (burger.indexOf(item)==3){
+                if (item.id == "topbun"){
+                    item.setAttribute("position",{x:person.object3D.position.x, y:person.object3D.position.y+0.1, z:person.object3D.position.z-1});
+                } else{
+                    item.setAttribute("position", {x:person.object3D.position.x, y:person.object3D.position.y+1.3, z:person.object3D.position.z-1});
+                }
+                
+            }
+            if (burger.indexOf(item)==4){
+                if (item.id == "topbun"){
+                    item.setAttribute("position",{x:person.object3D.position.x, y:person.object3D.position.y+0.2, z:person.object3D.position.z-1});
+                } else{
+                    item.setAttribute("position", {x:person.object3D.position.x, y:person.object3D.position.y+1.4, z:person.object3D.position.z-1});
+                }
+                
+            }
+            
         }
-        customerburger.setAttribute("position",{x:person.object3D.position.x, y:1.5, z:person.object3D.position.z-1});
-        console.log(customerburger);
+        
+        ordercomplete=true;
+        
     }
+
+
+    reaction(person,rxn){
+        //if (rxn == "bad"){
+        //    console.log(person.eb1l);
+        //    if(person.id == "customer1"){
+        //        eb1l.setAttribute("rotation", {x:0, y:0, z:15});
+        //        eb1r.setAttribute("rotation", {x:0, y:0, z:-15});
+        //    }
+        //    if (person.id == "customer2"){
+        //        eb2l.setAttribute("rotation", {x:0, y:0, z:15});
+        //        eb2r.setAttribute("rotation", {x:0, y:0, z:-15});
+        //    }
+        //    if (person.id == "customer3"){
+        //        eb3l.setAttribute("rotation", {x:0, y:0, z:15});
+        //        eb3r.setAttribute("rotation", {x:0, y:0, z:-15});
+        //    }
+        //}
+       
+        if (rxn == "good" && ordercomplete){
+            if (seat == 1){
+
+            }
+        }
+    
+    }
+
 
 }

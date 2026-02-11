@@ -1,4 +1,4 @@
-let scene,handslot,capacity=0,served=true,count=0;
+let scene,handslot,capacity=0,served=true,count=0,clickable=true,ordercomplete=false, orderreaction;
 let people = [];
 let con1=[], con2=[], con3=[], con4=[], con5=[];
 let conveyoritems = [con1,con2,con3,con4,con5];
@@ -16,6 +16,14 @@ window.addEventListener("DOMContentLoaded",function() {
     camera = document.querySelector("a-camera");
     handslot = document.querySelector("#handslot");
     trashcan = document.querySelector("#trashcan");
+
+    // eyebrows for reaction
+    eb1l = document.querySelector("#eyebrowleft1");
+    eb1r = document.querySelector("#eyebrowright1");
+    eb2l = document.querySelector("#eyebrowleft2");
+    eb2r = document.querySelector("#eyebrowright2");
+    eb3l = document.querySelector("#eyebrowleft3");
+    eb3r = document.querySelector("#eyebrowright3");
 
     // plates
     plate1 = document.querySelector("#plate1");
@@ -254,16 +262,16 @@ function loop(){
     for (let customer of people){
         cstmr.enterline(customer);
         if (Math.round(customer.object3D.position.x)==-6 && served){
-            customerorder.choose();
-            customerorder.display();
+            customerorder.choose(ordercomplete);
+            customerorder.display(ordercomplete);
             served=false;
         }
     }
 
     // confirm order matching
     bell.addEventListener("click",()=>{
-        if (sp.length>=1 && order.length>=1){
-
+        if (sp.length>=1 && order.length>=1 && clickable){
+            clickable=false;
             for (let i = 0; i<sp.length;i++){
                 if (sp[i].id==order[i] && sp.length==order.length){
                     count+=1;
@@ -271,10 +279,16 @@ function loop(){
                 }
             }
             if (count==order.length){
-                console.log("correct");
+                
+                orderreaction="good";
                 count=0;
+            } else if (!(count==order.length)){
+                count = 0;
+                orderreaction="bad";
             }
+            cstmr.reaction(people[0], orderreaction);
             cstmr.exitline(people[0], sp);
+            
         }
     });
     
@@ -342,7 +356,6 @@ function loop(){
     });
     
 
-    
     // plate 2 (non stackable)
     
     plate2.addEventListener("click", ()=>{
@@ -369,7 +382,7 @@ function loop(){
         hover2=false;
     });
     
-
+    // picking up items ability
     window.addEventListener("keydown", function(e){
         //plate1
         if (e.key == "e" && hands.length==0 && p1.length==1 && hover1){
